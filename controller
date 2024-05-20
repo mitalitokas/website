@@ -1,0 +1,24 @@
+package com.example.controller;
+
+import com.example.model.UserInput;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+@Controller
+public class FormController {
+
+    @GetMapping("/")
+    public String showForm(Model model) {
+        model.addAttribute("userInput", new UserInput());
+        return "form";
+    }
+
+    @PostMapping("/submit")
+    public String submitForm(@ModelAttribute UserInput userInput, Model model) {
+        model.addAttribute("userInput", userInput);
+        return "result";
+    }
+}
